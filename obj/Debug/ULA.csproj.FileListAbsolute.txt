@@ -16,3 +16,12 @@ C:\Projects\Windows\ULA\ULA\Sorteio\obj\Debug\ULA.csprojResolveAssemblyReference
 C:\Projects\Windows\ULA\ULA\Sorteio\obj\Debug\ULA.Form1.resources
 C:\Projects\Windows\ULA\ULA\Sorteio\obj\Debug\ULA.Properties.Resources.resources
 C:\Projects\Windows\ULA\ULA\Sorteio\obj\Debug\ULA.csproj.GenerateResource.Cache
+C:\Projects\.NET\Sorteio\bin\Debug\ULA.exe.config
+C:\Projects\.NET\Sorteio\obj\Debug\ULA.exe
+C:\Projects\.NET\Sorteio\obj\Debug\ULA.pdb
+C:\Projects\.NET\Sorteio\bin\Debug\ULA.exe
+C:\Projects\.NET\Sorteio\bin\Debug\ULA.pdb
+C:\Projects\.NET\Sorteio\obj\Debug\ULA.csprojResolveAssemblyReference.cache
+C:\Projects\.NET\Sorteio\obj\Debug\ULA.Form1.resources
+C:\Projects\.NET\Sorteio\obj\Debug\ULA.Properties.Resources.resources
+C:\Projects\.NET\Sorteio\obj\Debug\ULA.csproj.GenerateResource.Cache

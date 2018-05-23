@@ -59,6 +59,21 @@ namespace ULA
             }
         }
 
+        private void txtListRepeat_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyValue.Equals(13))
+                    AddInListRepeat();
+
+                CheckButtonVisibility();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
         private void btnExecute_Click(object sender, EventArgs e)
         {
             try
@@ -157,19 +172,41 @@ namespace ULA
             }
         }
 
+        private void AddInListRepeat()
+        {
+            string valueInput = txtListRepeat.Text.Trim().ToUpper();
+
+            if (!listRepeat.Items.Contains(valueInput))
+            {
+                listRepeat.Items.Add(valueInput);
+                txtListRepeat.Text = "";
+                txtListRepeat.Focus();
+            }
+            else
+            {
+                MessageBox.Show("A Lista de Repetição Ja contem esse item.");
+                txtListRepeat.Text = "";
+                txtListRepeat.Focus();
+            }
+        }
+
         private void DoSorteio()
         {
             List<string> allLista1 = new List<string>();
             List<string> allLista2 = new List<string>();
+            List<string> allListaRepeat = new List<string>();
             List<int> ordemLista1 = new List<int>();
             List<int> ordemLista2 = new List<int>();
+            List<int> ordemListaRepeat = new List<int>();
             int totalLista1 = lstLista1.Items.Count;
             int totalLista2 = lstLista2.Items.Count;
+            int totalListaRepeat = listRepeat.Items.Count;
             int increment = 0;
             string result = "";
             Random rdnGetNumeros = new Random();
             int numeroRamdom;
             int checkListaMenor = ((totalLista1 > totalLista2) ? totalLista2 : totalLista1);
+            int numberRepetition;
             
             foreach (string item in lstLista1.Items)
             {
@@ -181,7 +218,12 @@ namespace ULA
                 allLista2.Add(item);
             }
 
-            if(allLista1.Count > 0 && allLista2.Count > 0)
+            foreach (string item in listRepeat.Items)
+            {
+                allListaRepeat.Add(item);
+            }
+
+            if (allLista1.Count > 0 && allLista2.Count > 0)
             {
                 while (increment < checkListaMenor)
                 {
@@ -207,11 +249,29 @@ namespace ULA
                     }
                 }
 
+                if(cbAddListRep.Checked)
+                {
+                    int.TryParse(txtNumberRepetition.Text, out numberRepetition);
+
+                    increment = 0;
+
+                    while (increment < checkListaMenor)
+                    {
+                        numeroRamdom = rdnGetNumeros.Next(totalListaRepeat);
+                        
+                        ordemListaRepeat.Add(numeroRamdom);
+                        increment++;
+                    }
+                }
+                
                 result = "\nResultado do Sorteio:\n\n";
 
                 for (int i = 0; i < checkListaMenor; i++)
                 {
-                    result += lstLista1.Items[ordemLista1[i]].ToString() + " - " + lstLista2.Items[ordemLista2[i]].ToString() + " \n";
+                    result += lstLista1.Items[ordemLista1[i]].ToString() 
+                        + " - " + lstLista2.Items[ordemLista2[i]].ToString() 
+                        + ((cbAddListRep.Checked) ? " - " + listRepeat.Items[ordemListaRepeat[i]].ToString() : "")
+                        + " \n";
                 }
             }
             else
@@ -271,6 +331,12 @@ namespace ULA
         {
             btnClearLista1.Visible = (lstLista1.Items.Count > 0) ? true : false;
             btnClearLista2.Visible = (lstLista2.Items.Count > 0) ? true : false;
+            panelListRepeat.Visible = (cbAddListRep.Checked) ? true : false;
+        }
+
+        private void cbAddListRep_CheckedChanged(object sender, EventArgs e)
+        {
+            panelListRepeat.Visible = (cbAddListRep.Checked) ? true : false;
         }
     }
 }
