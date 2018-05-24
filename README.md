@@ -7,3 +7,6 @@ Aceita uma lista menor que a outra e realiza o sorteio, embaralhando a primeira 
 
 # 1 lista
 Faz o sorteio de um item da lista.
+
+# lista de repetição
+Repeti o número de vezes digitado para cada item inserido na terceira lista. A multiplicação de númeor de itens pelo número digitado precisa ser IGUAL ao número de itens da MENOR lista (das 2 de cima)
