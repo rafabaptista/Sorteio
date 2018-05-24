@@ -40,11 +40,12 @@
             this.btnClearLista1 = new System.Windows.Forms.Button();
             this.cbAddListRep = new System.Windows.Forms.CheckBox();
             this.panelListRepeat = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtNumberRepetition = new System.Windows.Forms.TextBox();
             this.listRepeat = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtListRepeat = new System.Windows.Forms.TextBox();
-            this.txtNumberRepetition = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnClearListRepeat = new System.Windows.Forms.Button();
             this.panelListRepeat.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,7 +113,7 @@
             // 
             // btnClearLista2
             // 
-            this.btnClearLista2.Location = new System.Drawing.Point(463, 777);
+            this.btnClearLista2.Location = new System.Drawing.Point(463, 766);
             this.btnClearLista2.Name = "btnClearLista2";
             this.btnClearLista2.Size = new System.Drawing.Size(246, 29);
             this.btnClearLista2.TabIndex = 7;
@@ -122,7 +123,7 @@
             // 
             // btnClearLista1
             // 
-            this.btnClearLista1.Location = new System.Drawing.Point(40, 777);
+            this.btnClearLista1.Location = new System.Drawing.Point(40, 766);
             this.btnClearLista1.Name = "btnClearLista1";
             this.btnClearLista1.Size = new System.Drawing.Size(246, 29);
             this.btnClearLista1.TabIndex = 8;
@@ -143,6 +144,7 @@
             // 
             // panelListRepeat
             // 
+            this.panelListRepeat.Controls.Add(this.btnClearListRepeat);
             this.panelListRepeat.Controls.Add(this.label2);
             this.panelListRepeat.Controls.Add(this.txtNumberRepetition);
             this.panelListRepeat.Controls.Add(this.listRepeat);
@@ -150,17 +152,35 @@
             this.panelListRepeat.Controls.Add(this.txtListRepeat);
             this.panelListRepeat.Location = new System.Drawing.Point(292, 288);
             this.panelListRepeat.Name = "panelListRepeat";
-            this.panelListRepeat.Size = new System.Drawing.Size(165, 460);
+            this.panelListRepeat.Size = new System.Drawing.Size(165, 530);
             this.panelListRepeat.TabIndex = 10;
             this.panelListRepeat.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Nº Repetições:";
+            // 
+            // txtNumberRepetition
+            // 
+            this.txtNumberRepetition.Location = new System.Drawing.Point(88, 51);
+            this.txtNumberRepetition.Name = "txtNumberRepetition";
+            this.txtNumberRepetition.Size = new System.Drawing.Size(74, 20);
+            this.txtNumberRepetition.TabIndex = 12;
+            this.txtNumberRepetition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumberRepetition_KeyPress);
             // 
             // listRepeat
             // 
             this.listRepeat.FormattingEnabled = true;
-            this.listRepeat.Location = new System.Drawing.Point(3, 79);
+            this.listRepeat.Location = new System.Drawing.Point(3, 85);
             this.listRepeat.Name = "listRepeat";
-            this.listRepeat.Size = new System.Drawing.Size(159, 381);
+            this.listRepeat.Size = new System.Drawing.Size(159, 368);
             this.listRepeat.TabIndex = 11;
+            this.listRepeat.SelectedIndexChanged += new System.EventHandler(this.listRepeat_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -179,27 +199,21 @@
             this.txtListRepeat.TabIndex = 0;
             this.txtListRepeat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtListRepeat_KeyDown);
             // 
-            // txtNumberRepetition
+            // btnClearListRepeat
             // 
-            this.txtNumberRepetition.Location = new System.Drawing.Point(88, 51);
-            this.txtNumberRepetition.Name = "txtNumberRepetition";
-            this.txtNumberRepetition.Size = new System.Drawing.Size(74, 20);
-            this.txtNumberRepetition.TabIndex = 12;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Nº Repetições:";
+            this.btnClearListRepeat.Location = new System.Drawing.Point(3, 478);
+            this.btnClearListRepeat.Name = "btnClearListRepeat";
+            this.btnClearListRepeat.Size = new System.Drawing.Size(159, 29);
+            this.btnClearListRepeat.TabIndex = 11;
+            this.btnClearListRepeat.Text = "LIMPAR LISTA REPETIÇÃO";
+            this.btnClearListRepeat.UseVisualStyleBackColor = true;
+            this.btnClearListRepeat.Click += new System.EventHandler(this.btnClearListRepeat_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 737);
+            this.ClientSize = new System.Drawing.Size(745, 826);
             this.Controls.Add(this.panelListRepeat);
             this.Controls.Add(this.cbAddListRep);
             this.Controls.Add(this.btnClearLista1);
@@ -242,6 +256,7 @@
         private System.Windows.Forms.ListBox listRepeat;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNumberRepetition;
+        private System.Windows.Forms.Button btnClearListRepeat;
     }
 }
 

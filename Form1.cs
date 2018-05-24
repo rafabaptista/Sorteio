@@ -14,7 +14,7 @@ namespace ULA
     public partial class Form1 : Form
     {
         #region .: Constructor :.
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -73,12 +73,25 @@ namespace ULA
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
+        private void txtNumberRepetition_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         private void btnExecute_Click(object sender, EventArgs e)
         {
             try
             {
-                DoSorteio();
+                if(canDoSorteio())
+                    DoSorteio();
+                else
+                    MessageBox.Show("Verifique os campos." 
+                        + ((cbAddListRep.Checked) ? "(O número de itens vezes o número de repetições deve ser igual ao número de itens da menor lista)" : "" )
+                        );
             }
             catch (Exception ex)
             {
@@ -130,6 +143,91 @@ namespace ULA
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnClearListRepeat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listRepeat.SelectedItem != null)
+                {
+                    listRepeat.Items.Remove(listRepeat.SelectedItem.ToString());
+                    txtListRepeat.Focus();
+                }
+                else
+                {
+                    listRepeat.Items.Clear();
+                    txtListRepeat.Focus();
+                }
+
+                CheckButtonVisibility();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void lstLista2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lstLista2.SelectedItem != null)
+                {
+                    btnClearLista2.Text = "Remover item selecionado Lista 2";
+                }
+                else
+                {
+                    btnClearLista2.Text = "Limpar Lista 2";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void lstLista1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lstLista1.SelectedItem != null)
+                {
+                    btnClearLista1.Text = "Remover item selecionado Lista 1";
+                }
+                else
+                {
+                    btnClearLista1.Text = "Limpar Lista 1";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void listRepeat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listRepeat.SelectedItem != null)
+                {
+                    btnClearListRepeat.Text = "Remover item selecionado Lista Repetição";
+                }
+                else
+                {
+                    btnClearListRepeat.Text = "Limpar Lista Repetição";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void cbAddListRep_CheckedChanged(object sender, EventArgs e)
+        {
+            panelListRepeat.Visible = (cbAddListRep.Checked) ? true : false;
         }
 
         #endregion
@@ -190,6 +288,39 @@ namespace ULA
             }
         }
 
+        private bool canDoSorteio()
+        {
+            int numberRepetition;
+            int lessList;
+
+            if (lstLista1.Items.Count > 0 || lstLista2.Items.Count > 0)
+            {
+                if (lstLista1.Items.Count > 0 && lstLista2.Items.Count > 0)
+                {
+                    lessList = (lstLista1.Items.Count <= lstLista2.Items.Count) ? lstLista1.Items.Count : lstLista2.Items.Count;
+
+                    if (cbAddListRep.Checked)
+                    {
+                        if (!string.IsNullOrEmpty(txtNumberRepetition.Text) && listRepeat.Items.Count > 0)
+                        {
+                            int.TryParse(txtNumberRepetition.Text, out numberRepetition);
+
+                            if ((listRepeat.Items.Count * numberRepetition) == lessList)
+                                return true;
+                        }
+
+                        return false;
+                    }
+
+                    return true;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
         private void DoSorteio()
         {
             List<string> allLista1 = new List<string>();
@@ -217,12 +348,7 @@ namespace ULA
             {
                 allLista2.Add(item);
             }
-
-            foreach (string item in listRepeat.Items)
-            {
-                allListaRepeat.Add(item);
-            }
-
+            
             if (allLista1.Count > 0 && allLista2.Count > 0)
             {
                 while (increment < checkListaMenor)
@@ -253,14 +379,25 @@ namespace ULA
                 {
                     int.TryParse(txtNumberRepetition.Text, out numberRepetition);
 
+                    foreach (string item in listRepeat.Items)
+                    {
+                        for(int i = 0; i < numberRepetition; i++)
+                        {
+                            allListaRepeat.Add(item);
+                        }
+                    }
+                    
                     increment = 0;
 
                     while (increment < checkListaMenor)
                     {
-                        numeroRamdom = rdnGetNumeros.Next(totalListaRepeat);
+                        numeroRamdom = rdnGetNumeros.Next(allListaRepeat.Count);
                         
-                        ordemListaRepeat.Add(numeroRamdom);
-                        increment++;
+                        if (!ordemListaRepeat.Contains(numeroRamdom))
+                        {
+                            ordemListaRepeat.Add(numeroRamdom);
+                            increment++;
+                        }
                     }
                 }
                 
@@ -270,7 +407,7 @@ namespace ULA
                 {
                     result += lstLista1.Items[ordemLista1[i]].ToString() 
                         + " - " + lstLista2.Items[ordemLista2[i]].ToString() 
-                        + ((cbAddListRep.Checked) ? " - " + listRepeat.Items[ordemListaRepeat[i]].ToString() : "")
+                        + ((cbAddListRep.Checked) ? " - " + allListaRepeat[ordemListaRepeat[i]].ToString() : "")
                         + " \n";
                 }
             }
@@ -287,56 +424,14 @@ namespace ULA
             MessageBox.Show(result, "SORTEIO", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void lstLista2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (lstLista2.SelectedItem != null)
-                {
-                    btnClearLista2.Text = "Remover item selecionado Lista 2";
-                }
-                else
-                {
-                    btnClearLista2.Text = "Limpar Lista 2";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void lstLista1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (lstLista1.SelectedItem != null)
-                {
-                    btnClearLista1.Text = "Remover item selecionado Lista 1";
-                }
-                else
-                {
-                    btnClearLista1.Text = "Limpar Lista 1";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        #endregion
-
         private void CheckButtonVisibility()
         {
             btnClearLista1.Visible = (lstLista1.Items.Count > 0) ? true : false;
             btnClearLista2.Visible = (lstLista2.Items.Count > 0) ? true : false;
             panelListRepeat.Visible = (cbAddListRep.Checked) ? true : false;
+            btnClearListRepeat.Visible = (listRepeat.Items.Count > 0) ? true : false;
         }
 
-        private void cbAddListRep_CheckedChanged(object sender, EventArgs e)
-        {
-            panelListRepeat.Visible = (cbAddListRep.Checked) ? true : false;
-        }
+        #endregion
     }
 }
