@@ -1,0 +1,13 @@
+C:\Projects\Windows\Sorteio\bin\x86\Release\ULA.exe.config
+C:\Projects\Windows\Sorteio\bin\x86\Release\ULA.exe.manifest
+C:\Projects\Windows\Sorteio\bin\x86\Release\ULA.application
+C:\Projects\Windows\Sorteio\bin\x86\Release\ULA.exe
+C:\Projects\Windows\Sorteio\bin\x86\Release\ULA.pdb
+C:\Projects\Windows\Sorteio\obj\x86\Release\ULA.csprojResolveAssemblyReference.cache
+C:\Projects\Windows\Sorteio\obj\x86\Release\ULA.Form1.resources
+C:\Projects\Windows\Sorteio\obj\x86\Release\ULA.Properties.Resources.resources
+C:\Projects\Windows\Sorteio\obj\x86\Release\ULA.csproj.GenerateResource.Cache
+C:\Projects\Windows\Sorteio\obj\x86\Release\ULA.exe.manifest
+C:\Projects\Windows\Sorteio\obj\x86\Release\ULA.application
+C:\Projects\Windows\Sorteio\obj\x86\Release\ULA.exe
+C:\Projects\Windows\Sorteio\obj\x86\Release\ULA.pdb
