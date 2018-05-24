@@ -1,8 +1,10 @@
 
 # Para instalar a aplicação de Sorteio:
-<form action="https://github.com/rafabaptista/Sorteio/raw/master/Setup/Instalador%20Sorteio/Release/Instalador%20Sorteio.msi">
-    <input type="submit" value="Download Instalador" />
-</form>
+<span style="background: #e4f0f5; border-color: #3f87a6; padding: .45em .35em .3em; border-radius: 2px;border-left: 4px solid;">
+    <a style="fore-color:#3f87a6;" href="https://github.com/rafabaptista/Sorteio/raw/master/Setup/Instalador%20Sorteio/Release/Instalador%20Sorteio.msi">
+          Download do Instalador
+    </a>
+</span>
 
 # Sorteio C#
 
