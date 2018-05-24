@@ -1,7 +1,8 @@
-<a href="https://github.com/rafabaptista/Sorteio/raw/master/Setup/Instalador%20Sorteio/Release/Instalador%20Sorteio.msi">
-  Download do Instalador
-</a>
 
+# Para instalar a aplicação de Sorteio:
+<form action="https://github.com/rafabaptista/Sorteio/raw/master/Setup/Instalador%20Sorteio/Release/Instalador%20Sorteio.msi">
+    <input type="submit" value="Download Instalador" />
+</form>
 
 # Sorteio C#
 
