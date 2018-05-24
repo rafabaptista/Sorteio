@@ -1,3 +1,8 @@
+<a href="https://github.com/rafabaptista/Sorteio/raw/master/Setup/Instalador%20Sorteio/Release/Instalador%20Sorteio.msi">
+  Download do Instalador
+</a>
+
+
 # Sorteio C#
 
 Software para sorteio de 2 listas ou apenas 1.
