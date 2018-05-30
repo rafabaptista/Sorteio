@@ -375,29 +375,39 @@ namespace ULA
                     }
                 }
 
-                if(cbAddListRep.Checked)
+                if (cbAddListRep.Checked)
                 {
-                    int.TryParse(txtNumberRepetition.Text, out numberRepetition);
-
-                    foreach (string item in listRepeat.Items)
+                    if (!String.IsNullOrEmpty(txtNumberRepetition.Text))
                     {
-                        for(int i = 0; i < numberRepetition; i++)
+                        int.TryParse(txtNumberRepetition.Text, out numberRepetition);
+
+                        foreach (string item in listRepeat.Items)
                         {
-                            allListaRepeat.Add(item);
+                            for (int i = 0; i < numberRepetition; i++)
+                            {
+                                allListaRepeat.Add(item);
+                            }
+                        }
+
+                        increment = 0;
+
+                        while (increment < checkListaMenor)
+                        {
+                            numeroRamdom = rdnGetNumeros.Next(allListaRepeat.Count);
+
+                            if (!ordemListaRepeat.Contains(numeroRamdom))
+                            {
+                                ordemListaRepeat.Add(numeroRamdom);
+                                increment++;
+                            }
                         }
                     }
-                    
-                    increment = 0;
-
-                    while (increment < checkListaMenor)
+                    else
                     {
-                        numeroRamdom = rdnGetNumeros.Next(allListaRepeat.Count);
-                        
-                        if (!ordemListaRepeat.Contains(numeroRamdom))
-                        {
-                            ordemListaRepeat.Add(numeroRamdom);
-                            increment++;
-                        }
+                        numeroRamdom = rdnGetNumeros.Next(listRepeat.Items.Count);
+
+                        ordemListaRepeat.Add(numeroRamdom);
+                        increment++;
                     }
                 }
                 
@@ -430,6 +440,10 @@ namespace ULA
             btnClearLista2.Visible = (lstLista2.Items.Count > 0) ? true : false;
             panelListRepeat.Visible = (cbAddListRep.Checked) ? true : false;
             btnClearListRepeat.Visible = (listRepeat.Items.Count > 0) ? true : false;
+
+            lblCountList1.Text = "Nº Itens: " + lstLista1.Items.Count.ToString();
+            lblCountList2.Text = "Nº Itens: " + lstLista2.Items.Count.ToString();
+            lblCountListRepeat.Text = "Nº Itens: " + listRepeat.Items.Count.ToString();
         }
 
         #endregion

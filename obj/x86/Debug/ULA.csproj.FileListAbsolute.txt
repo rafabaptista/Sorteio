@@ -1,0 +1,6 @@
+C:\Projects\.NET\Sorteio\bin\x86\Debug\ULA.exe.config
+C:\Projects\.NET\Sorteio\obj\x86\Debug\ULA.Form1.resources
+C:\Projects\.NET\Sorteio\obj\x86\Debug\ULA.Properties.Resources.resources
+C:\Projects\.NET\Sorteio\obj\x86\Debug\ULA.csproj.GenerateResource.Cache
+C:\Projects\.NET\Sorteio\obj\x86\Debug\ULA.exe
+C:\Projects\.NET\Sorteio\obj\x86\Debug\ULA.pdb
